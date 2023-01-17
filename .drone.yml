@@ -6,7 +6,7 @@ platform:
   arch: amd64
 steps:
   - name: publish
-    image: klakegg/hugo
+    image: klakegg/hugo:ext-alpine
     pull: if-not-exists
     commands:
       - hugo
