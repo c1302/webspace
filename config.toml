@@ -1,0 +1,37 @@
+baseURL = "https://c1302.soarch.top"
+languageCode = "zh-Hans"
+defaultContentLanguage = "zh"
+enableRobotsTXT = true
+hasCJKLanguage = true
+
+title = 'C1302实验室'
+theme = "introduction"
+
+buildDrafts = false
+buildExpired = true
+buildFuture = true
+
+[params]
+dateFormat = "2006/6/18"
+
+
+[[menu.main]]
+name = "首页"
+url = "/"
+weight = 1
+[[menu.main]]
+name = "分享"
+url = "/#分享"
+weight = 2
+[[menu.main]]
+name = "博客"
+url = "/blog/"
+weight = 3
+[[menu.main]]
+name = "联系"
+url = "/#contact"
+weight = 4
+[[menu.main]]
+name = "关于"
+url = "/#about"
+weight = 5
