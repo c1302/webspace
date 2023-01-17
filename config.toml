@@ -11,27 +11,46 @@ buildDrafts = false
 buildExpired = true
 buildFuture = true
 
+# Introduction主题配置
 [params]
-dateFormat = "2006/6/18"
+themeStyle = "auto"
+favicon = "/img/favicon.ico"
+dateFormat = "2006/1/2"
 
+# 首页配置
+[params.home]
+numberOfProjectsToShow = 3
+timeZone = "Asia/Chongqing"
+timeFormat = "zh-CN"
 
+# 联系配置
+[[params.social]]
+url = "mailto:1098517478@qq.com"
+icon = "paper-plane"
+icon_pack = "fas"
+[[params.social]]
+url = "https://github.com/c1302/webspace"
+icon = "github"
+icon_pack = "fab"
+
+# 导航
 [[menu.main]]
 name = "首页"
 url = "/"
 weight = 1
 [[menu.main]]
 name = "分享"
-url = "/#分享"
+url = "/projects/"
 weight = 2
 [[menu.main]]
 name = "博客"
 url = "/blog/"
 weight = 3
-[[menu.main]]
-name = "联系"
-url = "/#contact"
-weight = 4
-[[menu.main]]
-name = "关于"
-url = "/#about"
-weight = 5
+# [[menu.main]]
+# name = "联系"
+# url = "/#contact"
+# weight = 4
+# [[menu.main]]
+# name = "关于"
+# url = "/#about"
+# weight = 5

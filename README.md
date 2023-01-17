@@ -46,4 +46,80 @@ _选装_
 
 ## 创作内容
 
+### 图文分享
+
+1. 创建文件，执行如下命令：
+
+   ```sh
+   hugo new projects/你的图文名称/index.md
+   ```
+
+2. 使用 markdown 语法编写
+
+### 编写博客
+
+1. 创建文件，执行如下命令：
+
+   ```sh
+   hugo new blog/你的博客标题.md
+   ```
+
+2. 使用 markdown 语法编写
+
 ## 发布网站
+
+1. 首次使用需追加仓库
+
+   ```sh
+   git remote set-url --add origin https://git.soarch.top/c1302/webspace.git
+   ```
+
+   账号密码请联系管理员
+
+2. 修改版本号，打开 docker-compose.yml 文件，内容如下：
+
+   ```yml
+   version: '3'
+   services:
+   soarch_hugo:
+     image: registry.cn-hangzhou.aliyuncs.com/soarch/c1302:1.0.0 # 修改此行
+     container_name: 'c1302'
+     ports:
+       - '5004:80'
+     restart: always
+   ```
+
+   版本号分为 3 位数字，由小数点间隔
+
+   - 第 1 位版本号：数字为 1，暂时固定不变
+
+   - 第 2 位版本号：换主题，则数字加 1，将第三位版本号归零
+
+   - 第 3 位版本号：每次发布加 1
+
+3. 提交更改内容，执行如下命令：
+
+   ```sh
+   git add .
+   git commit -m "修改信息"
+   git push
+   ```
+
+4. 打标签，执行如下命令：
+
+   ```sh
+   git tag -a 1.0.0 -m "修改信息概述" # 必须对应步骤1的版本号
+   ```
+
+5. 推送版本号，执行如下命令：
+
+   ```sh
+   git push origin 1.0.0 # 必须对应步骤1的版本号
+   ```
+
+6. 可联系管理员到 CI 平台查看流水线是否成功
+
+## 其他注意事项
+
+- 图片处理最大不超过 200K，再大则请学习使用图床
+- 如需更换皮肤，请学习 Hugo
