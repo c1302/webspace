@@ -2,17 +2,19 @@
 
 ## 本地预览
 
-- 安装软件
+1. 安装软件
 
-  1. 下载 [Hugo](https://github.com/gohugoio/hugo/releases)
-  2. 下载 [git](https://git-scm.com/downloads)
+   - 下载 [Hugo](https://github.com/gohugoio/hugo/releases)
+   - 下载 [git](https://git-scm.com/downloads)
 
-- 启动服务
+2. 启动服务
 
-  ```sh
-  hugo serve
-  ```
+   ```sh
+   hugo serve
+   ```
 
-- 打开浏览器，访问：http://localhost:1313
+3. 打开浏览器，访问：http://localhost:1313
+
+## 创作内容
 
 ## 发布
