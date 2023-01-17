@@ -1,0 +1,18 @@
+{
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  // 格式化
+  "prettier.singleQuote": true,
+  // markdown配置
+  "[markdown]": {
+    "editor.quickSuggestions": {
+      "other": true, // this must be true
+      "comments": false,
+      "strings": false
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "markdown-pdf.displayHeaderFooter": false,
+  "markdown.extension.toc.levels": "2..6",
+  // "markdown-pdf.executablePath": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
+}
