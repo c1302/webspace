@@ -1,0 +1,8 @@
+version: '3'
+services:
+  soarch_hugo:
+    image: registry.cn-hangzhou.aliyuncs.com/soarch/c1302:2.7.3
+    container_name: 'c1302'
+    ports:
+      - '5004:80'
+    restart: always

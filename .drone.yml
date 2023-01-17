@@ -1,0 +1,79 @@
+kind: pipeline
+type: docker
+name: default
+platform:
+  os: linux
+  arch: amd64
+steps:
+  - name: publish
+    image: klakegg/hugo
+    pull: if-not-exists
+    commands:
+      - hugo
+  - name: build
+    image: plugins/docker
+    pull: if-not-exists
+    settings:
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      repo: registry.cn-hangzhou.aliyuncs.com/soarch/c1302
+      auto_tag: true
+      registry: registry.cn-hangzhou.aliyuncs.com
+      dockerfile: Dockerfile
+  - name: upload
+    image: appleboy/drone-scp
+    pull: if-not-exists
+    settings:
+      host:
+        from_secret: ssh_host
+      port:
+        from_secret: ssh_port
+      username:
+        from_secret: ssh_username
+      password:
+        from_secret: ssh_password
+      target: /root/docker-compose/c1302/
+      source:
+        - docker-compose.yml
+      rm: true
+      # strip_components: 1
+  - name: deploy
+    image: appleboy/drone-ssh
+    pull: if-not-exists
+    environment:
+      REGISTRY_URL: 'registry.cn-hangzhou.aliyuncs.com'
+      DOCKER_USERNAME:
+        from_secret: docker_username
+      DOCKER_PASSWORD:
+        from_secret: docker_password
+    settings:
+      host:
+        from_secret: ssh_host
+      port:
+        from_secret: ssh_port
+      username:
+        from_secret: ssh_username
+      password:
+        from_secret: ssh_password
+      envs:
+        - REGISTRY_URL
+        - DOCKER_USERNAME
+        - DOCKER_PASSWORD
+      script:
+        - cd /root/docker-compose/c1302/
+        - echo $DOCKER_PASSWORD | docker login $REGISTRY_URL --username=$DOCKER_USERNAME --password-stdin
+        - docker pull $REGISTRY_URL/soarch/c1302:${DRONE_TAG}
+        - docker-compose down
+        - docker-compose up -d --build
+image_pull_secrets:
+  - docker_config_json
+trigger:
+  # branch和tag不可共用
+  # branch:
+  #   - master
+  event:
+    - tag
+  ref:
+    - refs/tags/*
